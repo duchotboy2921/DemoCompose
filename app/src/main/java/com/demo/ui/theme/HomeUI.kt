@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.demo.R
+import com.demo.data.isDarkTheme
 import com.demo.data.isFinishLoaded
 import com.demo.data.model.Product
 import com.demo.viewmodel.HomeViewmodel
@@ -31,7 +32,7 @@ fun HomeUI(homeModel: HomeViewmodel) {
     homeModel.getProductInHome()
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        bottomBar = { BottomBar() }
+        bottomBar = { BottomBar(homeModel) }
     ) {
         Column(modifier = Modifier.wrapContentSize()) {
             Image(
@@ -109,7 +110,7 @@ fun displayAllProduct(homeModel: HomeViewmodel) {
 }
 
 @Composable
-fun BottomBar() {
+fun BottomBar(homeModel: HomeViewmodel) {
     var selectedIndex = remember { mutableStateOf(0) }
     BottomNavigation() {
         BottomNavigationItem(
@@ -126,11 +127,13 @@ fun BottomBar() {
             },
             label = { Text(text = "Like") },
             selected = (selectedIndex.value == 1),
-            onClick = { selectedIndex.value = 1 })
+            onClick = { selectedIndex.value = 1
+                        isDarkTheme.value = !isDarkTheme.value})
         BottomNavigationItem(
             icon = { Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu btn") },
             label = { Text(text = "Menu") },
             selected = (selectedIndex.value == 2),
-            onClick = { selectedIndex.value = 2 })
+            onClick = { selectedIndex.value = 2
+                        homeModel.navigateToMenuScreen()})
     }
 }

@@ -26,3 +26,10 @@ val Typography = Typography(
     )
     */
 )
+val customTypo = Typography(
+    body1 = TextStyle(
+        fontFamily =  FontFamily.SansSerif,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp
+    )
+)

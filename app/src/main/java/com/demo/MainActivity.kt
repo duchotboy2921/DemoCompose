@@ -11,16 +11,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.demo.data.currentScreen
-import com.demo.nav.popAndPushScreen
-import com.demo.nav.rootNav
-import com.demo.nav.setupGraph
+import com.demo.data.isDarkTheme
+import com.demo.data.mainContext
+import com.demo.data.stateToNavigate
+import com.demo.nav.*
 import com.demo.ui.theme.DemoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DemoTheme {
+            DemoTheme(isDarkTheme.value) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        mainContext = this
     }
 }
 
@@ -41,5 +43,11 @@ fun loadView(){
 @Composable
 fun changeScreenByState(){
     val screen = currentScreen.collectAsState().value
-    popAndPushScreen(screen)
+    val state = stateToNavigate.collectAsState().value
+    if(state == StateToNavigate.HomeToOther){
+        pushScreen(screen)
+    }else{
+        popAndPushScreen(screen)
+    }
+
 }

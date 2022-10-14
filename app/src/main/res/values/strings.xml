@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Demo</string>
+    <string name="error_login">Lỗi đăng nhập!</string>
 </resources>

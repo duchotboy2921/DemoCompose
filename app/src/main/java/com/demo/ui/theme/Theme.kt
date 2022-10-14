@@ -37,7 +37,7 @@ fun DemoTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable (
 
     MaterialTheme(
         colors = colors,
-        typography = Typography,
+        typography = customTypo,
         shapes = Shapes,
         content = content
     )

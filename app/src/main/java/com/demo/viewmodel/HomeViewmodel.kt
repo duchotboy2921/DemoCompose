@@ -3,10 +3,14 @@ package com.demo.viewmodel
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.demo.data.currentScreen
 import com.demo.data.firebaseAPI.ProductCallBack
 import com.demo.data.firebaseAPI.getNewProduct
 import com.demo.data.isFinishLoaded
 import com.demo.data.model.Product
+import com.demo.data.stateToNavigate
+import com.demo.nav.ScreenNavigation
+import com.demo.nav.StateToNavigate
 
 class HomeViewmodel:ViewModel() {
     private val _listProduct = mutableStateListOf<Product>()
@@ -26,5 +30,9 @@ class HomeViewmodel:ViewModel() {
         }catch (ex:Exception){
             isFinishLoaded.value = false
         }
+    }
+    fun navigateToMenuScreen(){
+        currentScreen.value = ScreenNavigation.MenuScreen
+        stateToNavigate.value = StateToNavigate.HomeToOther
     }
 }

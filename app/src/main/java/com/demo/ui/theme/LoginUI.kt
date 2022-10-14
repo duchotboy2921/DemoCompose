@@ -19,7 +19,6 @@ import com.demo.viewmodel.LoginViewModel
 
 @Composable
 fun LoginUI(loginViewModel: LoginViewModel){
-    loginViewModel.checkIfAlreadyLogin()
     Column(
         modifier = Modifier
             .fillMaxWidth()
