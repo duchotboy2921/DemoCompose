@@ -83,14 +83,6 @@ fun displayAProduct(product: Product) {
 fun displayAllProduct(homeModel: HomeViewmodel) {
     val check by isFinishLoaded.collectAsState()
     if (check) {
-//            LazyColumn{
-//                items(homeModel.listProduct){
-//                        product ->
-//                    displayAProduct(product = product)
-//                    Log.d("product1",product.productName)
-//                }
-//            }
-
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
