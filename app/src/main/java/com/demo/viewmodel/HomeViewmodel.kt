@@ -10,8 +10,10 @@ import com.demo.data.firebaseAPI.ProductCallBack
 import com.demo.data.firebaseAPI.getNewProduct
 import com.demo.data.firebaseAPI.getNewProduct1
 import com.demo.data.isFinishLoaded
+import com.demo.data.loadingState
 import com.demo.data.model.Product
 import com.demo.data.stateToNavigate
+import com.demo.nav.LoadingState
 import com.demo.nav.ScreenNavigation
 import com.demo.nav.StateToNavigate
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +28,7 @@ class HomeViewmodel:ViewModel() {
         get() = _listProduct
 
     fun getProductInHome(){
+        loadingState.value = LoadingState.Loading
         try {
             getNewProduct(object :ProductCallBack{
                 override fun getCallback(list: ArrayList<Product>) {
@@ -52,5 +55,8 @@ class HomeViewmodel:ViewModel() {
     fun navigateToMenuScreen(){
         currentScreen.value = ScreenNavigation.MenuScreen
         stateToNavigate.value = StateToNavigate.HomeToOther
+    }
+    fun disableLoading(){
+        loadingState.value = LoadingState.DoneLoading
     }
 }

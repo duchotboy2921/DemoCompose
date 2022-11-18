@@ -83,6 +83,7 @@ fun displayAProduct(product: Product) {
 fun displayAllProduct(homeModel: HomeViewmodel) {
     val check by isFinishLoaded.collectAsState()
     if (check) {
+        homeModel.disableLoading()
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
